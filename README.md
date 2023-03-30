@@ -1,5 +1,5 @@
 # Algorithm
-本仓库代码是本人自己在LeetCode刷题的总结沉淀。
+本仓库代码是自己在 LeetCode 刷题的总结沉淀。
 
 由于本人正在读研，所以会在抽空做题，持续上传....
 
@@ -24,6 +24,7 @@
   - LeetCode 中《程序员面试金典》里面的题目
 - class
   - 按照数据结构和算法分类
-  - backTracking 回溯算法
-  - dynamicProgramming 动态规划
+  - backTracking 回溯算法题目
+  - dynamicProgramming 动态规划题目
   - ......
+> 每道题中都给出了题目的网址，以及题目内容。
