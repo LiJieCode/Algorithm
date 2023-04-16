@@ -10,6 +10,7 @@
 个人微信：LiJieCode192
 
 ## 目录介绍
+- LeetCodeNotes : 笔记
 - offer 
   - LeetCode 中《剑指Offer》里面的题目
   - primary 初级
