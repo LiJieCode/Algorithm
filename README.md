@@ -28,4 +28,6 @@
   - backTracking 回溯算法题目
   - dynamicProgramming 动态规划题目
   - ......
+> 由于leetcode中《剑指Offer》的题目是加入学习计划后，每天更新一天的题目。
+> 文件LeetCodeNotes中把每天的题目网址都已保存，可以随时随地做任何天的题目。
 > 每道题中都给出了题目的网址，以及题目内容。
