@@ -274,7 +274,7 @@
   >   - ```java
   >     // for (int i = 0; i < queue.size; i++)
   >     // 因为 queue 一直在变，queue.size 会多次执行，这样写不行，所以要先将他的大小给赋值给size
-  >                                 
+  >                                     
   >     int size = queue.size();
   >     for (int i = 0; i < size; i++) {
   >         TreeNode node = queue.poll();
@@ -282,7 +282,7 @@
   >         if (node.left != null) queue.add(node.left);
   >         if (node.right != null) queue.add(node.right);
   >     }
-  >                                 
+  >                                     
   >     // *********这个写法真的秀***************************************
   >     // 因为循环体中的代码和i无关，所以这里直接倒序，这样 queue.size() 只执行了一次，没问题
   >     for(int i = queue.size(); i > 0; i--) {
@@ -654,13 +654,13 @@
   >
   >   ```java
   >   public class Solution {
-  >                                       
+  >                                           
   >       // prices : [7,1,5,3,6,4]
   >       public int uniquePaths(int m, int n) {
-  >                                       
+  >                                           
   >           // 动态规划，dp
   >           int[][] dp = new int[m][n];
-  >                                       
+  >                                           
   >           // 初始化初值
   >           for (int i = 0; i < m; i++) {
   >               dp[i][0] = i;
@@ -668,7 +668,7 @@
   >           for (int i = 0; i < n; i++) {
   >               dp[0][i] = i;
   >           }
-  >                                       
+  >                                           
   >           for (int i = 1; i < m; i++) {
   >               for (int j = 1; j < n; j++) {
   >                   dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
@@ -956,9 +956,7 @@
    *     }
    * }
    */
-  // “我走过我的世界，再从你的世界走一遍”
-  // “你走过你的世界，再从我的世界走一遍”
-  // “最终我们将相遇，可能在途中（公共节点），可能在结尾（null）”
+  
   class Solution {
       public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
           ListNode listA = headA;
@@ -974,10 +972,14 @@
       }
   }
   ```
-
+  
   > 总结，沉淀：
   >
-  > - 
+  > - 使用双指针
+  >
+  > - // “我走过我的世界，再从你的世界走一遍”
+  > - // “你走过你的世界，再从我的世界走一遍”
+  > - // “最终我们将相遇，可能在途中（公共节点），可能在结尾（null）”
 
 ### 第十三天 - 双指针：简单
 
@@ -1350,7 +1352,11 @@
 
 
 
-## 专项突击
+
+
+<img src="./images/001.jpg" alt="image" style="zoom:25%;" />
+
+## 专项突破
 
 ### 第一天 - 整数
 
@@ -1445,17 +1451,89 @@ class Solution {
 }
 ```
 
-> 在对链表进行操作时，一种常用的技巧是添加一个<span style = "color:blue; font-weight:bold">哑节点（dummy node）</span>，它的 next\textit{next}next 指针指向链表的头节点。这样一来，我们就不需要对头节点进行特殊的判断了。
-
-```java
-// 不加哑节点
-
-```
+> 总结沉淀：
+>
+> - 在对链表进行操作时，一种常用的技巧是添加一个<span style = "color:blue; font-weight:bold">哑节点（dummy node）</span>，它的 next指针指向链表的头节点。这样一来，我们就不需要对头节点进行特殊的判断了。
+> - <span style = "color:blue; font-weight:bold">哑节点（dummy node）</span>的创建要看节点的构造函数是否合适？有的不能创造哑节点。
 
 
 
 - [剑指 Offer II 022. 链表中环的入口节点 - 力扣（Leetcode）](https://leetcode.cn/problems/c32eOV/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+
+```java
+public class Solution {
+    // 哈希表方法
+    public ListNode detectCycle(ListNode head) {
+        // Map<> nodeMap = new HashMap()
+        ListNode pos = head;
+        Set<ListNode> nodeSet = new HashSet<>();
+        while (pos != null){
+            if (nodeSet.contains(pos)){
+                return pos;
+            } else {
+                nodeSet.add(pos);
+            }
+            pos = pos.next;
+        }
+        return null;
+    }
+
+    // 双指针方法
+    public ListNode detectCycle1(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while (true) {
+            if (fast == null || fast.next == null) return  null;
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) break;
+        }
+
+        // 说明第一次相遇了
+        // 构造第二次相遇
+        ListNode slow2 = head;
+        while (slow2 != slow) {
+            slow = slow.next;
+            slow2 = slow2.next;
+        }
+        return slow;
+    }
+}
+```
+
+> 总结沉淀：
+>
+> 此类链表题目一般都是使用双指针法解决的，例如<span style = "color:blue; font-weight:bold">寻找距离尾部第 k 个节点</span>、<span style = "color:blue; font-weight:bold">寻找环入口</span>、<span style = "color:blue; font-weight:bold">寻找公共尾部入口</span>等。
+>
+> - 思路很好，详见：[剑指 Offer II 022. 链表中环的入口节点 - 力扣（Leetcode）](https://leetcode.cn/problems/c32eOV/solutions/977000/jian-zhi-offer-ii-022-lian-biao-zhong-hu-8f1m/)
+> - 
+
+
+
 - [剑指 Offer II 023. 两个链表的第一个重合节点 - 力扣（Leetcode）](https://leetcode.cn/problems/3u1WK4/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+
+```java
+// 双指针
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        // if (headA == null || headB == null) return null;
+        ListNode node1 = headA, node2 = headB;
+        
+        while (node1 != node2) {
+            node1 = node1 == null ? headB : node1.next;
+            node2 = node2 == null ? headA : node2.next;
+        }
+        return node1;
+    }
+}
+```
+
+> 总结沉淀：
+>
+> - “我走过我的世界，再从你的世界走一遍”
+>  * “你走过你的世界，再从我的世界走一遍”
+>  * “最终我们将相遇，可能在途中（公共节点），可能在结尾（null）”
 
 
 
@@ -1522,10 +1600,52 @@ class Solution {
 
 
 
-#### 第十六天 - 树
+### 第十六天 - 树
 
 - [剑指 Offer II 047. 二叉树剪枝 - 力扣（Leetcode）](https://leetcode.cn/problems/pOCWxh/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode pruneTree(TreeNode root) {
+        if (root == null) return  null;
+
+        root.left = pruneTree(root.left);
+        root.right = pruneTree(root.right);
+
+        if (root.right == null && root.left == null && root.val == 0) return null;
+        
+        return root;
+        
+    }
+}
+```
+
+> 总结沉淀：
+>
+> - 
+
 - [剑指 Offer II 048. 序列化与反序列化二叉树 - 力扣（Leetcode）](https://leetcode.cn/problems/h54YBf/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+
+```java
+```
+
+
+
 - [剑指 Offer II 049. 从根节点到叶节点的路径数字之和 - 力扣（Leetcode）](https://leetcode.cn/problems/3Etpl5/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
 
 
@@ -1691,17 +1811,25 @@ class Solution {
 
 ### 第三十七天 - 图
 
-- 
+- [剑指 Offer II 108. 单词演变 - 力扣（Leetcode）](https://leetcode.cn/problems/om3reC/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+- [剑指 Offer II 109. 开密码锁 - 力扣（Leetcode）](https://leetcode.cn/problems/zlDJc7/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+- [剑指 Offer II 110. 所有路径 - 力扣（Leetcode）](https://leetcode.cn/problems/bP4bmD/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
 
 
 
 ### 第三十八天 - 图
 
-
+- [剑指 Offer II 111. 计算除法 - 力扣（Leetcode）](https://leetcode.cn/problems/vlzXQL/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+- [剑指 Offer II 112. 最长递增路径 - 力扣（Leetcode）](https://leetcode.cn/problems/fpTFWP/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+- [剑指 Offer II 113. 课程顺序 - 力扣（Leetcode）](https://leetcode.cn/problems/QA2IGt/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
 
 
 
 ### 第三十九天 - 图
+
+- [剑指 Offer II 114. 外星文字典 - 力扣（Leetcode）](https://leetcode.cn/problems/Jf1JuT/?envType=study-plan-v2&id=coding-interviews-special)
+- [剑指 Offer II 115. 重建序列 - 力扣（Leetcode）](https://leetcode.cn/problems/ur2n8P/?envType=study-plan-v2&id=coding-interviews-special)
+- [剑指 Offer II 116. 省份数量 - 力扣（Leetcode）](https://leetcode.cn/problems/bLyHh0/?envType=study-plan-v2&id=coding-interviews-special)
 
 
 
@@ -1709,7 +1837,9 @@ class Solution {
 
 ### 第四十天 - 图
 
-
+- [剑指 Offer II 117. 相似的字符串 - 力扣（Leetcode）](https://leetcode.cn/problems/H6lPxb/?envType=study-plan-v2&id=coding-interviews-special)
+- [剑指 Offer II 118. 多余的边 - 力扣（Leetcode）](https://leetcode.cn/problems/7LpjUW/?envType=study-plan-v2&id=coding-interviews-special)
+- [剑指 Offer II 119. 最长连续序列 - 力扣（Leetcode）](https://leetcode.cn/problems/WhsWhI/?envType=study-plan-v2&id=coding-interviews-special)
 
 
 
