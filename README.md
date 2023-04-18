@@ -25,7 +25,7 @@
       - ......
 - interview
   - LeetCode 中《程序员面试金典》里面的题目
-- class   <span style="color:blue; font-weight:bold">（最近在按这个格式刷题）</span>
+- class   **（最近在按这个格式刷题）**
   - 按照数据结构和算法分类
   - backTracking 回溯算法题目
   - dynamicProgramming 动态规划题目
