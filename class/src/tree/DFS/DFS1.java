@@ -59,45 +59,33 @@ public class DFS1 {
 
     // 中序遍历
     public int[] inorderTraversal(TreeNode root) {
-        if (root == null)  return new int[0];
+
+        if(root == null) return new int[0];
+
         Stack<TreeNode> nodeStack = new Stack<>();
-        ArrayList<Integer> res = new ArrayList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
         TreeNode curr = root;
 
-        while (curr != null || !nodeStack.isEmpty()) {
-            if (curr != null){
+        while (curr != null || !nodeStack.isEmpty()){
+
+            if (curr != null) {
                 nodeStack.push(curr);
                 curr = curr.left;
             } else {
                 curr = nodeStack.pop();
-                res.add(curr.val);
+                ans.add(curr.val);
                 curr = curr.right;
             }
-
-
         }
 
-        int size = res.size();
-        int[] ans = new int[size];
+        // ArrayLiat -> Array
+        int size = ans.size();
+        int[] res = new int[size];
         for (int i = 0; i < size; i++) {
-            ans[i] = res.get(size - 1 - i);
+            res[i] = ans.get(i);
         }
 
-        return ans;
+        return res;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

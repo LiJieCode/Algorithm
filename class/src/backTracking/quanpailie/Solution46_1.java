@@ -1,4 +1,4 @@
-package backTracking.test01;
+package backTracking.quanpailie;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,36 +17,40 @@ import java.util.List;
  *
  */
 
-public class Solution {
+public class Solution46_1 {
     public List<List<Integer>> permute(int[] nums) {
 
-        // 结果
-        List<List<Integer>> result = new ArrayList<>();
-        // 中间结果
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums.length == 0) return res;
+
         List<Integer> output = new ArrayList<>();
+
         for (int num : nums) {
             output.add(num);
         }
 
         int n = nums.length;
-        backtracking(n, output, result, 0);
-        return result;
+        backtracking(n, res, output, 0);
+        return res;
+
 
     }
 
-    public void backtracking(int n, List<Integer> output, List<List<Integer>> result, int first){
-        // 终止条件
-        if (first == n){
-            result.add(new ArrayList<>(output));
+    public void backtracking(int n, List<List<Integer>> res, List<Integer> output, int first){
+        if (first == n) {
+            res.add(new ArrayList<>(output));
         }
 
-        for (int i = first; i < n; i++) {
-            // 交换
+        for (int i = 0; i < n; i++) {
+
+            Collections.swap(output,i,first);
+
+            backtracking(n, res, output, first + 1);
+
             Collections.swap(output, first, i);
-            // 下一层
-            backtracking(n, output, result, first + 1);
-            // 撤销，再交换回来
-            Collections.swap(output, first, i);
+
         }
+
     }
+
 }
