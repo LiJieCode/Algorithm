@@ -2,6 +2,7 @@ package tree.BFS;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -33,6 +34,30 @@ public class BFS {
             result[i] = temp.get(i);
         }
         return result;
+    }
+
+    // 以List集合返回 层先方法
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null)  return  res;
+
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.add(root);
+
+        while(!nodeQueue.isEmpty()) {
+            ArrayList<Integer> ans = new ArrayList<>();
+
+            for (int i = nodeQueue.size(); i > 0; i--) {
+                TreeNode curr = nodeQueue.poll();
+                ans.add(curr.val);
+                if (curr.left != null) nodeQueue.add(curr.left);
+                if (curr.right != null) nodeQueue.add(curr.right);
+            }
+            res.add(ans);
+        }
+
+        return res;
     }
 
 }
