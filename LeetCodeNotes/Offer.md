@@ -1,5 +1,24 @@
 # 剑指Offer
 
+
+
+##  更新日志：
+- 2023年4月18日
+  - 更新文件：class/src/tree/BFS、/DFS
+    - 主要更新了二叉树的广度优先搜索和深度优先搜索
+    - 深度优先分为：先序遍历、中序遍历、后序遍历，代码都已给出
+  - 更新文件：/offer/src/senior/day16/test01
+    - 题目：二叉树剪枝
+- 
+
+
+
+
+
+
+
+
+
 ## 初级
 
 ### 第一天
@@ -274,7 +293,7 @@
   >   - ```java
   >     // for (int i = 0; i < queue.size; i++)
   >     // 因为 queue 一直在变，queue.size 会多次执行，这样写不行，所以要先将他的大小给赋值给size
-  >                                     
+  >                                       
   >     int size = queue.size();
   >     for (int i = 0; i < size; i++) {
   >         TreeNode node = queue.poll();
@@ -282,7 +301,7 @@
   >         if (node.left != null) queue.add(node.left);
   >         if (node.right != null) queue.add(node.right);
   >     }
-  >                                     
+  >                                       
   >     // *********这个写法真的秀***************************************
   >     // 因为循环体中的代码和i无关，所以这里直接倒序，这样 queue.size() 只执行了一次，没问题
   >     for(int i = queue.size(); i > 0; i--) {
@@ -654,13 +673,13 @@
   >
   >   ```java
   >   public class Solution {
-  >                                           
+  >                                             
   >       // prices : [7,1,5,3,6,4]
   >       public int uniquePaths(int m, int n) {
-  >                                           
+  >                                             
   >           // 动态规划，dp
   >           int[][] dp = new int[m][n];
-  >                                           
+  >                                             
   >           // 初始化初值
   >           for (int i = 0; i < m; i++) {
   >               dp[i][0] = i;
@@ -668,7 +687,7 @@
   >           for (int i = 0; i < n; i++) {
   >               dp[0][i] = i;
   >           }
-  >                                           
+  >                                             
   >           for (int i = 1; i < m; i++) {
   >               for (int j = 1; j < n; j++) {
   >                   dp[i][j] = dp[i][j - 1] + dp[i - 1][j];
@@ -1647,6 +1666,11 @@ class Solution {
 
 
 - [剑指 Offer II 049. 从根节点到叶节点的路径数字之和 - 力扣（Leetcode）](https://leetcode.cn/problems/3Etpl5/?envType=study-plan&id=lcof-ii&plan=lcof&plan_progress=xhwzd117)
+
+```
+```
+
+
 
 
 

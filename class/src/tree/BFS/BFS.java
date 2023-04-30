@@ -20,8 +20,11 @@ public class BFS {
 
         // !queue.isEmpty()
         while (queue.size() != 0) {
+            // 取出当前节点
             TreeNode curr = queue.poll();
+            // 访问当前节点的值，并添加到链表中
             temp.add(curr.val);
+            // 向队列中添加左右子树节点
             if (curr.left != null) queue.add(curr.left);
             if (curr.right != null) queue.add(curr.right);
         }

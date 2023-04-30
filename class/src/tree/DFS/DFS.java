@@ -25,8 +25,11 @@ public class DFS {
         stack.push(root);
 
         while (!stack.isEmpty()) {
+            // 当前节点弹栈
             TreeNode node = stack.pop();
+            // 访问当前节点的值，并添加到链表中年
             temp.add(node.val);
+            // 先压栈右节点，再压栈左节点
             if (node.right != null) stack.push(node.right);
             if (node.left != null) stack.push(node.left);
         }
@@ -51,11 +54,13 @@ public class DFS {
 
         while (curr != null || !stack.isEmpty()) {
             if (curr != null){
+                // 当前节点不为空，压栈
                 stack.push(curr);
                 curr = curr.left;
             } else {
+                // 当前节点为空了，在栈中弹出最顶的节点
                 curr = stack.pop();
-                // stack.pop();
+                // 访问节点，并将值添加链表中
                 temp.add(curr.val);
                 curr = curr.right;
             }
@@ -67,7 +72,6 @@ public class DFS {
             result[i] = temp.get(i);
         }
         return result;
-
     }
 
 

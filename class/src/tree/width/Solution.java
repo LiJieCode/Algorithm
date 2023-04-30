@@ -5,8 +5,19 @@ import javafx.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 题目地址：
+ * https://leetcode.cn/problems/maximum-width-of-binary-tree/description/
+ *
+ * 题目内容：
+ * 【662. 二叉树最大宽度】
+ * 给你一棵二叉树的根节点 root ，返回树的最大宽度。
+ *
+ */
+
 public class Solution {
 
+    //
     public int widthOfBinaryTree(TreeNode root) {
         int res = 1;
         List<Pair<TreeNode, Integer>> arr = new ArrayList<>();

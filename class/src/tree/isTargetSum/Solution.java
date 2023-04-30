@@ -1,4 +1,4 @@
-package dynamicProgramming.test02;
+package tree.isTargetSum;
 
 import java.util.LinkedList;
 import java.util.Queue;
