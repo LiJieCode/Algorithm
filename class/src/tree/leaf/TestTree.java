@@ -1,4 +1,5 @@
-package tree.BFS;
+package tree.leaf;
+
 
 /**
  *
@@ -23,17 +24,12 @@ public class TestTree {
         treeNode2.left = treeNode4;
         treeNode2.right = treeNode5;
         treeNode3.left = treeNode6;
-        treeNode6.right = treeNode10;
+        treeNode3.right = treeNode10;
         treeNode4.left = treeNode7;
         treeNode5.left = treeNode8;
         treeNode5.right = treeNode9;
 
-        BFS bfs = new BFS();
-        int[] ints = bfs.levelOrder1(treeNode1);
+        System.out.println(new Solution().countOfLeaf(treeNode1));
 
-        for (int anInt : ints) {
-            System.out.println(anInt);
-        }
     }
-
 }
