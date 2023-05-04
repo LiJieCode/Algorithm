@@ -45,6 +45,124 @@ public class Solution {
 
 
 
+## 队列与栈
+
+- 有效的括号
+
+  [20. 有效的括号 - 力扣（Leetcode）](https://leetcode.cn/problems/valid-parentheses/)
+
+```java
+public class Solution {
+    public boolean isValid(String s) {
+        int length = s.length();
+        if (length % 2 == 1) return false;
+
+        Map<Character, Character> pairs = new HashMap<>();
+        pairs.put('}', '{');
+        pairs.put(']', '[');
+        pairs.put(')', '(');
+
+        // 借助栈实现
+        Stack<Character> charStack = new Stack<>();
+
+        for (int i = 0; i < length; i++) {
+            char c = s.charAt(i);
+            if (pairs.containsKey(c)) {
+                // 如果栈为空了，或者栈顶元素和当前元素不匹配，则返回false
+                if (charStack.isEmpty() || charStack.peek() != pairs.get(c)) return false;
+                charStack.pop();
+            } else charStack.push(c);
+        }
+        // 防止只有左括号
+        // 只有左括号的话，栈不为空，就返回false
+        return charStack.isEmpty();
+    }
+}
+```
+
+> 总结，沉淀：
+>
+> - 
+
+- 滑动窗口最大值
+
+  [239. 滑动窗口最大值 - 力扣（Leetcode）](https://leetcode.cn/problems/sliding-window-maximum/)
+
+```java
+
+```
+
+>总结，沉淀：
+>
+>- 
+
+- 前k个高频元素
+
+  [347. 前 K 个高频元素 - 力扣（Leetcode）](https://leetcode.cn/problems/top-k-frequent-elements/description/)
+
+```java
+public class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        // 首先把nums放到HashMap表中
+        Map<Integer, Integer> occurrences = new HashMap<Integer, Integer>();
+        for (int num : nums) {
+            occurrences.put(num, occurrences.getOrDefault(num, 0) + 1);
+        }
+
+        // int[] 的第一个元素代表数组的值，第二个元素代表了该值出现的次数
+        PriorityQueue<int[]> queue = new PriorityQueue<int[]>(new Comparator<int[]>() {
+            public int compare(int[] m, int[] n) {
+                return m[1] - n[1];
+            }
+        });
+
+        for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()) {
+            int num = entry.getKey(), count = entry.getValue();
+            if (queue.size() == k) {
+                // 这里就两种情况
+                // 第一种：队列元素不满k个，直接进队列
+                // 第二种：和队列中最小的元素比较，大于最小的元素，才有机会成为前K个高频元素
+                // 小顶堆，来一个元素和最小的比较，大于最小的元素，才能成为前K个高频元素
+                if (queue.peek()[1] < count) {
+                    queue.poll();  //根节点（最小的取出）
+                    queue.offer(new int[]{num, count});     // 加入当前元素
+                }
+            } else {
+                // 如果优先队列的元素小于k，直接加进去，也就是假设前k个就是出现频率最高的k个
+                queue.offer(new int[]{num, count});
+            }
+        }
+
+        int[] ret = new int[k];
+        for (int i = 0; i < k; ++i) {
+            // 按出现次数从小到大依次取出
+            ret[i] = queue.poll()[0];
+        }
+        return ret;
+    }
+}
+```
+
+> 总结，沉淀：
+>
+> - 首先，用HashMap记录元素出现的次数
+> - 然后，HashMap中的元素依次进入优先队列，利用优先队列比较记录前k个高频元素
+>   - 第一种情况：队列元素不满k个，直接放进去
+>   - 第二种情况：队列元素等于k个，依次和根元素比较，大于根元素的才能进入队列（此时根元素剔除队列）
+
+- 数组中的第k大元素
+
+  [215. 数组中的第K个最大元素 - 力扣（Leetcode）](https://leetcode.cn/problems/kth-largest-element-in-an-array/description/)
+
+```java
+```
+
+
+
+
+
+
+
 ## 二分查找
 
 
@@ -305,6 +423,11 @@ public class Solution {
 > 总结，沉淀：
 >
 > - 
+
+- 【213打家劫舍3】
+
+```java
+```
 
 
 
@@ -737,6 +860,35 @@ public class Solution {
 
 
 ## 
+
+
+
+
+
+
+
+
+
+# 知识点
+
+## 堆
+
+- 堆必须是一个完全二叉树(只有最后一层节点可以不满)
+- 堆的分类：大顶堆和小顶堆
+- 堆可以用一个一维数组存储，下标关系是：节点为`i`的左子节点为`2i+1`，右子节点为`2i+2`。
+
+- 堆有两个操作：上滤和下滤
+  - 上滤主要用于插入新元素到堆中
+- 建堆的方法：
+  - 自顶向下  -  上滤   -   复杂度O(nlogn)：插入时建堆
+  - 自下向上  -  下滤   -   复杂度O(n)：先自形成一个堆，然后依次调整
+- 堆的应用：
+  - 优先队列
+    - 有两个操作：插入元素，弹出最小元素（可以用`小顶堆`来实现，直接弹出根元素）
+    - 弹出根元素后，把最后一个元素补到根元素，再用`下滤`修改成堆
+    - 堆排序就是依次将优先队列的根元素弹出
+
+
 
 
 
