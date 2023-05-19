@@ -52,7 +52,6 @@ public class DFS1 {
         for (int i = 0; i < size; i++) {
             ans[i] = res.get(size - 1 - i);
         }
-
         return ans;
     }
 
@@ -78,14 +77,13 @@ public class DFS1 {
             }
         }
 
+
         // ArrayLiat -> Array
         int size = ans.size();
         int[] res = new int[size];
         for (int i = 0; i < size; i++) {
             res[i] = ans.get(i);
         }
-
         return res;
     }
-
 }
