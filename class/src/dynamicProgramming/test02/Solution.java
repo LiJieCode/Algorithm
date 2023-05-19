@@ -27,6 +27,7 @@ public class Solution {
         nodeQueue.add(root);
         valueQueue.add(root.val);
 
+        // 借助了广度优先，队列实现
         while (!nodeQueue.isEmpty()){
             // 取出当前节点和值
             TreeNode currNode = nodeQueue.poll();
@@ -37,12 +38,12 @@ public class Solution {
                 if (currValue == targetSum) return true;
             }
 
-            // 更新当前节点
+            // 访问左节点
             if (currNode.left != null) {
                 nodeQueue.add(currNode.left);
                 valueQueue.add(currNode.left.val + currValue);
             }
-            // 更新当前值
+            // 访问右节点
             if (currNode.right != null) {
                 nodeQueue.add(currNode.right);
                 valueQueue.add(currNode.right.val + currValue);

@@ -22,6 +22,13 @@ public class Solution {
         }
 
         // int[] 的第一个元素代表数组的值，第二个元素代表了该值出现的次数
+//        PriorityQueue<int[]> priorityQueue = new PriorityQueue<>(new Comparator<int[]>() {
+//            @Override
+//            public int compare(int[] p, int[] q) {
+//                return p[1] - q[1];
+//            }
+//        });
+
         PriorityQueue<int[]> queue = new PriorityQueue<int[]>(new Comparator<int[]>() {
             public int compare(int[] m, int[] n) {
                 return m[1] - n[1];
@@ -30,6 +37,7 @@ public class Solution {
 
         for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()) {
             int num = entry.getKey(), count = entry.getValue();
+            //
             if (queue.size() == k) {
                 // 这里就两种情况
                 // 第一种：队列元素不满k个，直接进队列

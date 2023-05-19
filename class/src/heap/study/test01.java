@@ -28,8 +28,5 @@ public class test01 {
             System.out.println(pq.poll());
         }
 
-
-
     }
-
 }

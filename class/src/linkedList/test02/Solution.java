@@ -12,14 +12,29 @@ package linkedList.test02;
 
 public class Solution {
 
+//    public ListNode reverseList(ListNode head) {
+//        ListNode res = null;
+//        while (head != null){
+//            ListNode curr = head.next;
+//            head.next = res;
+//            res = head;
+//            head = curr;
+//        }
+//        return res;
+//    }
+
+
     public ListNode reverseList(ListNode head) {
+
         ListNode res = null;
-        while (head != null){
-            ListNode curr = head.next;
+
+        while (head != null) {
+            ListNode next = head.next;
             head.next = res;
             res = head;
-            head = curr;
+            head = next;
         }
+
         return res;
     }
 }
