@@ -29,7 +29,7 @@ public class TestTree {
         treeNode5.left = treeNode8;
         treeNode5.right = treeNode9;
 
-        DFS dfs = new DFS();
+        DFS3 dfs = new DFS3();
         int[] ints = dfs.postorderTraversal(treeNode1);
 
         for (int anInt : ints) {

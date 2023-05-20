@@ -53,16 +53,12 @@ public class Solution46 {
 
 
 
-
-
-
     boolean[] vis;
 
     public List<List<Integer>> permute(int[] nums) {
 
         List<List<Integer>> res = new ArrayList<>();
         if (nums.length == 0) return res;
-
         List<Integer> output = new ArrayList<>();
 
         int n = nums.length;
@@ -87,7 +83,6 @@ public class Solution46 {
             backtracking(nums, n, res, output, first + 1);
             vis[i] = false;
             output.remove(output.size() - 1);
-
 
         }
     }

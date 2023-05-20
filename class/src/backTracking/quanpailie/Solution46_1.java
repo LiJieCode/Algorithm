@@ -22,7 +22,6 @@ public class Solution46_1 {
 
         List<List<Integer>> res = new ArrayList<>();
         if (nums.length == 0) return res;
-
         List<Integer> output = new ArrayList<>();
 
         for (int num : nums) {
@@ -33,7 +32,6 @@ public class Solution46_1 {
         backtracking(n, res, output, 0);
         return res;
 
-
     }
 
     public void backtracking(int n, List<List<Integer>> res, List<Integer> output, int first){
@@ -42,11 +40,8 @@ public class Solution46_1 {
         }
 
         for (int i = 0; i < n; i++) {
-
             Collections.swap(output,i,first);
-
             backtracking(n, res, output, first + 1);
-
             Collections.swap(output, first, i);
 
         }
