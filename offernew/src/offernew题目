@@ -25,8 +25,8 @@ test03  广度优先遍历二叉树 - 借助队列（返回链表）之字形打
 test04
 test05
 test06
-test07  矩阵中的路径 中等
-test08
+test07  矩阵中的路径  中等
+test08  机器人的运动范围  中等
 test09
 test10
 test11
